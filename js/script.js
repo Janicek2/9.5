@@ -9,3 +9,5 @@ console.log(buttonLenght);
 for (i = 0 ; i < buttonLenght ; i++ ) {
     console.log(buttonElement[i].innerText);
 }
+
+//coś nie mogę commitować, może teraz
