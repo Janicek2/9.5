@@ -2,7 +2,7 @@ var buttonElement = document.getElementsByClassName('button');
 
 console.log(buttonElement);
 
-var buttonLenght = buttonElement.length
+var buttonLenght = buttonElement.length;
 
 console.log(buttonLenght);
 
