@@ -12,9 +12,9 @@ var computerPointsElem = document.getElementById('js-computerPoints');
 var x = Math.random();
 Math.floor(Math.random()*3);
 
-pickRock.addEventListener('click', function() { playerPick('rock') });
-pickPaper.addEventListener('click', function() { playerPick('paper') });
-pickScissors.addEventListener('click', function() { playerPick('scissors') });
+pickRock.addEventListener('click', function() { playerPick('rock'); });
+pickPaper.addEventListener('click', function() { playerPick('paper'); });
+pickScissors.addEventListener('click', function() { playerPick('scissors'); });
 
 var gameState = 'notStarted';
     player = {
@@ -40,7 +40,7 @@ function setGameElements() {
             pickElem.style.display = 'none';
             resultsElem.style.display = 'none';
     }
-    }
+}
 
 function newGame() {
     player.name = prompt('Please enter your name', 'imię gracza');
@@ -73,7 +73,7 @@ function playerPick(playerPick) {
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
     checkRoundWinner(playerPick, computerPick);
-    setGamePoints()
+    setGamePoints();
 
     if (player.score >= 10) {
         alert(player.name + " " + "WIN, CONGRATULATIONS!");
