@@ -1,5 +1,4 @@
 var newGameBtn = document.getElementById('js-newGameButton');
-newGameBtn.addEventListener('click', newGame);
 var pickRock = document.getElementById('js-playerPick_rock');
 var pickPaper = document.getElementById('js-playerPick_paper');
 var pickScissors = document.getElementById('js-playerPick_scissors');
@@ -10,20 +9,21 @@ var playerPointsElem = document.getElementById('js-playerPoints');
 var playerNameElem = document.getElementById('js-playerName');
 var computerPointsElem = document.getElementById('js-computerPoints');
 var x = Math.random();
+var gameState = 'notStarted';
+var player = { name: '', score: 0};
+var computer = { score: 0 };
+var playerPickElem = document.getElementById('js-playerPick');
+var computerPickElem = document.getElementById('js-computerPick');
+var playerResultElem = document.getElementById('js-playerResult');
+var computerResultElem = document.getElementById('js-computerResult');
+
 Math.floor(Math.random()*3);
+
+newGameBtn.addEventListener('click', newGame);
 
 pickRock.addEventListener('click', function() { playerPick('rock'); });
 pickPaper.addEventListener('click', function() { playerPick('paper'); });
 pickScissors.addEventListener('click', function() { playerPick('scissors'); });
-
-var gameState = 'notStarted';
-    player = {
-        name: '',
-        score: 0
-    },
-    computer = {
-        score: 0
-    };
 
 function setGameElements() {
     switch(gameState) {
@@ -33,8 +33,8 @@ function setGameElements() {
             resultsElem.style.display = 'block';
         break;
         case 'ended':
-            newGameBtn.innerText = 'Jeszcze raz';
-        case 'notStarted':
+            newGameBtn.innerText = 'Jeszcze raz'; /* falls through */
+        case 'notStarted':    /* falls through */
         default:
             newGameElem.style.display = 'block';
             pickElem.style.display = 'none';
@@ -43,7 +43,7 @@ function setGameElements() {
 }
 
 function newGame() {
-    player.name = prompt('Please enter your name', 'imię gracza');
+    player.name = prompt('Proszę podaj swoje imię', 'imię gracza');
     if (player.name) {
       player.score = computer.score = 0;
       gameState = 'started';
@@ -69,7 +69,6 @@ var playerPickElem = document.getElementById('js-playerPick'),
 
 function playerPick(playerPick) {
     var computerPick = getComputerPick();
-
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
     checkRoundWinner(playerPick, computerPick);
@@ -95,11 +94,8 @@ var winnerIs = 'player';
         (computerPick == 'rock' &&  playerPick == 'scissors') ||
         (computerPick == 'scissors' &&  playerPick == 'paper') ||
         (computerPick == 'paper' &&  playerPick == 'rock')) {
-
         winnerIs = 'computer';
-    }
-
-    if (winnerIs == 'player') {
+    }    if (winnerIs == 'player') {
         playerResultElem.innerHTML = "Win!";
         player.score++;
     } else if (winnerIs == 'computer') {
